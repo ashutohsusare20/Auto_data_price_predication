@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Car Price Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required>
+            
+            <label for="engine_hp">Engine HP:</label>
+            <input type="number" id="engine_hp" name="engine_hp" step="0.1" required>
+            
+            <label for="engine_cylinders">Engine Cylinders:</label>
+            <input type="number" id="engine_cylinders" name="engine_cylinders" required>
+            
+            <label for="transmission">Transmission Type:</label>
+            <select id="transmission" name="transmission" required>
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+            </select>
+            
+            <label for="driven_wheels">Driven Wheels:</label>
+            <select id="driven_wheels" name="driven_wheels" required>
+                <option value="Rear wheel drive">Rear wheel drive</option>
+                <option value="Front wheel drive">Front wheel drive</option>
+                <option value="All wheel drive">All wheel drive</option>
+            </select>
+            
+            <label for="number_of_doors">Number of Doors:</label>
+            <input type="number" id="number_of_doors" name="number_of_doors" required>
+            
+            <label for="market_category">Market Category:</label>
+            <select id="market_category" name="market_category" multiple required>
+                <option value="Factory Tuner">Factory Tuner</option>
+                <option value="Luxury">Luxury</option>
+                <option value="High-Performance">High-Performance</option>
+                <option value="Performance">Performance</option>
+                <!-- Add other categories as needed -->
+            </select>
+            
+            <label for="vehicle_size">Vehicle Size:</label>
+            <select id="vehicle_size" name="vehicle_size" required>
+                <option value="Compact">Compact</option>
+                <option value="Midsize">Midsize</option>
+                <option value="Fullsize">Fullsize</option>
+                <!-- Add other sizes as needed -->
+            </select>
+            
+            <label for="vehicle_style">Vehicle Style:</label>
+            <select id="vehicle_style" name="vehicle_style" required>
+                <option value="Coupe">Coupe</option>
+                <option value="Convertible">Convertible</option>
+                <!-- Add other styles as needed -->
+            </select>
+            
+            <label for="highway_mpg">Highway MPG:</label>
+            <input type="number" id="highway_mpg" name="highway_mpg" step="0.1" required>
+            
+            <label for="city_mpg">City MPG:</label>
+            <input type="number" id="city_mpg" name="city_mpg" step="0.1" required>
+            
+            <label for="popularity">Popularity:</label>
+            <input type="number" id="popularity" name="popularity" step="0.1" required>
+            
+            <button type="submit">Predict Price</button>
+        </form>
+
+        <!-- Display the result -->
+        {% if prediction_text %}
+            <div class="result">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
